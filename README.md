@@ -45,7 +45,7 @@ python -m src.simple_pathfinder
 
 ---
 ## **Usage Example**
-```sh
+```
 streamLine - Coordinates must be in the St. Augustine/Jacksonville Area!
 
 Please enter the coordinates for origin and destination points.
