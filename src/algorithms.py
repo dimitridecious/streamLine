@@ -28,46 +28,46 @@ class PathfindingAlgorithms:
 
         while pq:
             curr_dist, curr = heapq.heappop(pq)
-                if curr in checked:
-                    continue
-                checked.add(curr)
+            if curr in checked:
+                continue
+            checked.add(curr)
             # check if dest reached, stop if true
             if curr == dest:
                 break
             for i in self.graph.neighbors(curr):
                 if i in checked:
                     continue
-        # get edge length, handle multigraph structure
-        try:
-            edge_length = self.graph.edges[curr,i, 0]['length']
-            except (KeyError, IndexError):
-                edge_length = self.graph.edges[curr, i]['length']
+                # get edge length, handle multigraph structure
+                try:
+                    edge_length = self.graph.edges[curr, i, 0]['length']
+                except (KeyError, IndexError):
+                    edge_length = self.graph.edges[curr, i]['length']
 
-        new_dist = curr_dist + edge_length
+                new_dist = curr_dist + edge_length
 
-        # if shorter path, update structures
-        if new_dist < distances.get(i, float('inf')):
-        distances[i] = new_dist
-        prev[i] = curr
-    heapq.heappush(pq, (new_dist, i))
+                # if shorter path, update structures
+                if new_dist < distances.get(i, float('inf')):
+                    distances[i] = new_dist
+                    prev[i] = curr
+                    heapq.heappush(pq, (new_dist, i))
 
-   if distances.get(dest, float('inf')) == float('inf'):
-    # no path
-   computation_time = time.time() - start_time
-   return None, float('inf'), computation_time
+        if distances.get(dest, float('inf')) == float('inf'):
+            # no path
+            computation_time = time.time() - start_time
+            return None, float('inf'), computation_time
 
-    # backtracking from dest
-   path = []
-   node = dest
-   while node is not None:
-        path.append(node)
-        node = prev.get(node)
+        # backtracking from dest
+        path = []
+        node = dest
+        while node is not None:
+            path.append(node)
+            node = prev.get(node)
         path.reverse()  # reverse to get origin->dest
 
-    distance = distances[dest]
-    computation_time = time.time() - start_time
+        distance = distances[dest]
+        computation_time = time.time() - start_time
 
-    return path, distance, computation_time
+        return path, distance, computation_time
 
     def greedy_best_first_search(self, origin, dest):
         # implement gbfs here using heuristic

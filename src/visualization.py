@@ -26,9 +26,9 @@ class PathVisualizer:
         # Compute map center by averaging input latitude and longitudes.
 
         latitude = np.mean([data['y']
-                              for _, data in self.graph.nodes(data=True)])
+                            for _, data in self.graph.nodes(data=True)])
         longitude = np.mean([data['x']
-                              for _, data in self.graph.nodes(data=True)])
+                             for _, data in self.graph.nodes(data=True)])
 
         # Create Folio map and set visualizer settings.
 
