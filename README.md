@@ -3,7 +3,8 @@
 **DSA Final Project**
 
 streamLine is an algorithm based path finder that showcases the differences in processing time and distance calculation between two major algorithms, Dijkstras
-and GBFS (Greedy Best-First Search).
+and GBFS (Greedy Best-First Search). Source and destination coordinates can be placed anywhere in the world, as long as there aren't too many nodes
+(processing times may vary).
 
 ## *StreetSmart* Team Members
 - Dimitri Decious
@@ -46,7 +47,7 @@ python -m src.simple_pathfinder
 ---
 ## **Usage Example**
 ```
-streamLine - Coordinates must be in the St. Augustine/Jacksonville Area!
+streamLine - Coordinates must be relatively close together!
 
 Please enter the coordinates for origin and destination points.
 
