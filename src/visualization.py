@@ -30,7 +30,7 @@ class PathVisualizer:
         longitude = np.mean([data['x']
                              for _, data in self.graph.nodes(data=True)])
 
-        # Create Folio map and set visualizer settings.
+        # Create Folium map and set visualizer settings.
 
         m = folium.Map(location=[latitude, longitude], zoom_start=13)
         colors = {'dijkstra': 'red', 'gbfs': 'blue'}
@@ -51,8 +51,8 @@ class PathVisualizer:
 
                 # Add start and end markers.
 
-                folium.Marker(location=[coords[0][0], coords[0][1]], popup='Start', icon=folium.Icon(
-                    color='green')).add_to(m)
+                folium.Marker(location=[coords[0][0], coords[0][1]],
+                              popup='Start', icon=folium.Icon(color='green')).add_to(m)
                 folium.Marker(location=[coords[-1][0], coords[-1][1]],
                               popup='End', icon=folium.Icon(color='red')).add_to(m)
 
@@ -64,7 +64,8 @@ class PathVisualizer:
 
                 m.save(savePath)
                 print(f"Interactive map saved to {savePath}")
-            return m
+
+        return m
 
     def visualize_performance_comparison(self, metrics, savePath=None):
 
