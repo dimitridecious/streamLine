@@ -13,7 +13,62 @@ class PathfindingAlgorithms:
 
     def dijkstra(self, origin, dest):
         # implement dijkstras here
-        pass
+        # bug fix
+        if self.graph is None:
+            raise ValueError("Graph not set.")
+
+        start_time = time.time()
+        # dist to each node
+        distances = {node: float('inf') for node in self.graph.nodes}
+        distances[origin] = 0
+        # track the path
+        prev = {origin: None}
+        # min-heap of (dist, node) priority queues
+        pq = [(0, origin)]
+        checked = set()
+
+        while pq:
+            curr_dist, curr = heapq.heappop(pq)
+                if curr in checked:
+                    continue
+                checked.add(curr)
+            # check if dest, stop if true
+            if curr == dest:
+                break
+            for i in self.graph.neighbors(curr):
+                if i in checked:
+                    continue
+        # get edge length, should handle multigraph structure
+        try:
+            edge_length = self.graph.edges[curr,i, 0]['length']
+            except (KeyError, IndexError):
+                edge_length = self.graph.edges[curr, i]['length']
+
+        new_dist = curr_dist + edge_length
+
+        # if shorter path found, update structures
+        if new_dist < distances.get(i, float('inf')):
+        distances[i] = new_dist
+        prev[i] = curr
+    heapq.heappush(pq, (new_dist, i))
+
+   if distances.get(dest, float('inf')) == float('inf'):
+    # no path found
+   computation_time = time.time() - start_time
+   return None, float('inf'), computation_time
+
+    # reconstruct path by backtracking from dest
+   path = []
+   node = dest
+   while node is not None:
+        path.append(node)
+        node = prev.get(node)
+        path.reverse()  # reverse to get origin->dest
+
+    distance = distances[dest]
+    computation_time = time.time() - start_time
+
+    return path, distance, computation_time
 
     def greedy_best_first_search(self, origin, dest):
         # implement gbfs here using heuristic
