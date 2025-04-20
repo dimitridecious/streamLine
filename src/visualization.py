@@ -44,17 +44,17 @@ class PathVisualizer:
                 coords = [(self.graph.nodes[node]['y'],
                            self.graph.nodes[node]['x']) for node in path]
 
-            # Create polyline using path coordinates.
+                # Create polyline using path coordinates.
 
-            folium.PolyLine(coords, color=colors.get(
-                algoName, 'green'), weight=4, opacity=0.8, tooltip=f"{algoName} path").add_to(m)
+                folium.PolyLine(coords, color=colors.get(
+                    algoName, 'green'), weight=4, opacity=0.8, tooltip=f"{algoName} path").add_to(m)
 
-            # Add start and end markers.
+                # Add start and end markers.
 
-            folium.Marker(location=[coords[0][0], coords[0][1]], popup='Start', icon=folium.Icon(
-                color='green')).add_to(m)
-            folium.Marker(location=[coords[-1][0], coords[-1][1]],
-                          popup='End', icon=folium.Icon(color='red')).add_to(m)
+                folium.Marker(location=[coords[0][0], coords[0][1]], popup='Start', icon=folium.Icon(
+                    color='green')).add_to(m)
+                folium.Marker(location=[coords[-1][0], coords[-1][1]],
+                              popup='End', icon=folium.Icon(color='red')).add_to(m)
 
             # Saves the map to the provided path if possible.
 
@@ -62,9 +62,9 @@ class PathVisualizer:
 
                 os.makedirs(os.path.dirname(savePath), exist_ok=True)
 
-        m.save(savePath)
-        print(f"Interactive map saved to {savePath}")
-        return m
+                m.save(savePath)
+                print(f"Interactive map saved to {savePath}")
+            return m
 
     def visualize_performance_comparison(self, metrics, savePath=None):
 

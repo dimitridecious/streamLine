@@ -131,8 +131,8 @@ def handle_input():
 
 def main():
     # entry point: pull network, compute and compare the paths, then visualize
-    print("streamLine - Coordinates must be in the St. Augustine/Jacksonville Area!")
-    # get coordinates
+    print("streamLine - Coordinates must be relatively close together!")
+    # get coordinates, too many nodes may cause extreme processing times
     args = handle_input()
     # get the network
     G = get_route_network(args.origin_lat, args.origin_lng,
